@@ -299,7 +299,7 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(403, 353);
+            this.groupBox1.Size = new System.Drawing.Size(403, 345);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "配置";
@@ -329,7 +329,7 @@
             this.rightPanel.Location = new System.Drawing.Point(416, 11);
             this.rightPanel.Margin = new System.Windows.Forms.Padding(3, 2, 16, 2);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(412, 392);
+            this.rightPanel.Size = new System.Drawing.Size(412, 395);
             this.rightPanel.TabIndex = 11;
             this.rightPanel.Visible = false;
             // 
@@ -338,7 +338,7 @@
             this.xiyanxy_guide.AutoSize = true;
             this.xiyanxy_guide.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.xiyanxy_guide.ForeColor = System.Drawing.Color.Blue;
-            this.xiyanxy_guide.Location = new System.Drawing.Point(6, 358);
+            this.xiyanxy_guide.Location = new System.Drawing.Point(6, 363);
             this.xiyanxy_guide.Name = "xiyanxy_guide";
             this.xiyanxy_guide.Size = new System.Drawing.Size(144, 20);
             this.xiyanxy_guide.TabIndex = 16;
@@ -349,7 +349,7 @@
             // 
             this.settingsApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsApply.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settingsApply.Location = new System.Drawing.Point(307, 352);
+            this.settingsApply.Location = new System.Drawing.Point(316, 355);
             this.settingsApply.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.settingsApply.Name = "settingsApply";
             this.settingsApply.Size = new System.Drawing.Size(91, 37);
