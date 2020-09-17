@@ -15,7 +15,7 @@ using System.Xml.Linq;
 
 namespace BetterJoyForCemu {
 	public partial class MainForm : Form {
-		public bool nonOriginal = Boolean.Parse(ConfigurationManager.AppSettings["非原装手柄"]);
+		public bool nonOriginal = Boolean.Parse(ConfigurationManager.AppSettings["非原装手柄支持"]);
 		public List<Button> con, loc;
 		public bool calibrate;
 		public List<KeyValuePair<string, float[]>> caliData;

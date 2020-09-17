@@ -74,7 +74,7 @@ namespace BetterJoyForCemu {
                 settingsinfo.Clear();
                 settingsinfo.Text = "例如，如果同时使用Citra和Steam，可以关闭此项和 '以XInput显示' 项。如果你想让BetterJoy与Steam(或其他程序)无冲突，请查看HIDGuardian和Steam的wiki页面";
             }
-            if (mysettings.Text.Equals("非原装手柄")) {
+            if (mysettings.Text.Equals("非原装手柄支持")) {
                 settingsinfo.Clear();
                 settingsinfo.Text = "确定是否启用对第三方手柄的支持(实验-当前不支持第三方)。已添加“校准”按钮";
             }
