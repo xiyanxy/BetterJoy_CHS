@@ -38,9 +38,9 @@ namespace BetterJoyForCemu {
                 settingsinfo.Clear();
                 settingsinfo.Text = "以毫秒为单位的振动周期。较低意味着更细微的振动，较高则更稳重。振动响应不仅取决于此设置，始终都很高。默认值：300";
             }
-            if (mysettings.Text.Equals("低频振动") || mysettings.Text.Equals("高振动")) {
+            if (mysettings.Text.Equals("低频振动") || mysettings.Text.Equals("高频振动")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "手柄的HD振动设置用于低频/高频振动。更改以更改振动的声音调。注意：请勿将其设置在1200以上。默认值：40和120。若要使“更强”的振动声调，请尝试将低频/高频设置为160/320";
+                settingsinfo.Text = "手柄的HD振动设置用于低频/高频振动。更改以更改振动的声音调。注意：请勿将其设置在1200以上。默认值：低频40和高频120。若要使“更强”的振动声调，请尝试将低频/高频设置为160/320";
             }
             if (mysettings.Text.Equals("启用振动")) {
                 settingsinfo.Clear();
