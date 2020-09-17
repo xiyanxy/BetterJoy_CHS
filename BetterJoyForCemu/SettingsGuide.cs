@@ -90,6 +90,10 @@ namespace BetterJoyForCemu {
                 settingsinfo.Clear();
                 settingsinfo.Text = "鼠标陀螺仪操作的敏感度";
             }
+            if (mysettings.Text.Equals("通过按住或切换使用陀螺仪")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "勾选此设置将以按住按键方式激活使用陀螺仪，不勾选就是通过切换按键方式激活使用陀螺仪。如果使用的是手柄，一般默认勾选别管";
+            }
             if (mysettings.Text.Equals("鼠标左陀螺仪")) {
                 settingsinfo.Clear();
                 settingsinfo.Text = "当两个joycon连接时，鼠标移动时，右joycon的陀螺仪运动。这个交换一下";

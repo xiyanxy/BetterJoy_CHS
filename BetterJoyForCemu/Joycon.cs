@@ -626,7 +626,7 @@ namespace BetterJoyForCemu {
         long PowerOffInactivityMins = Int32.Parse(ConfigurationManager.AppSettings["不使用时自动断开连接"]);
         string extraGyroFeature = ConfigurationManager.AppSettings["陀螺仪使用Joycons或鼠标"];
         int GyroMouseSensitivity = Int32.Parse(ConfigurationManager.AppSettings["鼠标模拟陀螺仪敏感度"]);
-        bool GyroHoldToggle = Boolean.Parse(ConfigurationManager.AppSettings["按住或切换来应用陀螺仪"]);
+        bool GyroHoldToggle = Boolean.Parse(ConfigurationManager.AppSettings["通过按住或切换使用陀螺仪"]);
         bool GyroAnalogSliders = Boolean.Parse(ConfigurationManager.AppSettings["陀螺仪模拟"]);
         int GyroAnalogSensitivity = Int32.Parse(ConfigurationManager.AppSettings["陀螺仪模拟敏感度"]);
         byte[] sliderVal = new byte[] { 0, 0 };

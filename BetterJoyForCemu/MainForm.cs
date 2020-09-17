@@ -43,7 +43,7 @@ namespace BetterJoyForCemu {
 
 			//list all options
 			string[] myConfigs = ConfigurationManager.AppSettings.AllKeys;
-			Size childSize = new Size(140, 20); // new Size(87, 20);
+			Size childSize = new Size(160, 20); // new Size(87, 20); 修改侧栏设置项字长
             for (int i = 0; i != myConfigs.Length; i++) {
 				settingsTable.RowCount++;
 				settingsTable.Controls.Add(new Label() { Text = myConfigs[i], TextAlign = ContentAlignment.BottomLeft, AutoEllipsis = true, Size = childSize }, 0, i);

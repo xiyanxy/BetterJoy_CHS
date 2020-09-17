@@ -86,12 +86,12 @@
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exitToolStripMenuItem});
             this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(105, 28);
+            this.contextMenu.Size = new System.Drawing.Size(178, 28);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(104, 24);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(177, 24);
             this.exitToolStripMenuItem.Text = "退出BetterJoy";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -295,11 +295,11 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.settingsTable);
-            this.groupBox1.Location = new System.Drawing.Point(4, 13);
+            this.groupBox1.Location = new System.Drawing.Point(4, 3);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(358, 332);
+            this.groupBox1.Size = new System.Drawing.Size(403, 353);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "配置";
@@ -317,7 +317,7 @@
             this.settingsTable.Name = "settingsTable";
             this.settingsTable.RowCount = 1;
             this.settingsTable.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.settingsTable.Size = new System.Drawing.Size(346, 304);
+            this.settingsTable.Size = new System.Drawing.Size(391, 304);
             this.settingsTable.TabIndex = 1;
             // 
             // rightPanel
@@ -326,10 +326,10 @@
             this.rightPanel.Controls.Add(this.settingsApply);
             this.rightPanel.Controls.Add(this.groupBox1);
             this.rightPanel.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.rightPanel.Location = new System.Drawing.Point(416, 14);
+            this.rightPanel.Location = new System.Drawing.Point(416, 11);
             this.rightPanel.Margin = new System.Windows.Forms.Padding(3, 2, 16, 2);
             this.rightPanel.Name = "rightPanel";
-            this.rightPanel.Size = new System.Drawing.Size(369, 389);
+            this.rightPanel.Size = new System.Drawing.Size(412, 392);
             this.rightPanel.TabIndex = 11;
             this.rightPanel.Visible = false;
             // 
@@ -349,7 +349,7 @@
             // 
             this.settingsApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsApply.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.settingsApply.Location = new System.Drawing.Point(265, 349);
+            this.settingsApply.Location = new System.Drawing.Point(307, 352);
             this.settingsApply.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.settingsApply.Name = "settingsApply";
             this.settingsApply.Size = new System.Drawing.Size(91, 37);
@@ -388,7 +388,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(794, 417);
+            this.ClientSize = new System.Drawing.Size(835, 417);
             this.Controls.Add(this.btn_reassign_open);
             this.Controls.Add(this.foldLbl);
             this.Controls.Add(this.rightPanel);
