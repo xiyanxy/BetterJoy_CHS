@@ -76,7 +76,7 @@ namespace BetterJoyForCemu {
             }
             if (mysettings.Text.Equals("非原装手柄支持")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "确定是否启用对第三方手柄的支持(实验-当前不支持第三方)。已添加“校准”按钮";
+                settingsinfo.Text = "确定是否启用对第三方手柄的支持。开启此项将显示“校准”按钮";
             }
             if (mysettings.Text.Equals("开启Home键LED灯")) {
                 settingsinfo.Clear();
