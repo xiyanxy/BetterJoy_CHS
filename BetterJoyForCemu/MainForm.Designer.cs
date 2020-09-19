@@ -256,10 +256,10 @@
             // foldLbl
             // 
             this.foldLbl.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.foldLbl.Location = new System.Drawing.Point(375, 66);
+            this.foldLbl.Location = new System.Drawing.Point(375, 3);
             this.foldLbl.Margin = new System.Windows.Forms.Padding(4, 0, 0, 0);
             this.foldLbl.Name = "foldLbl";
-            this.foldLbl.Size = new System.Drawing.Size(38, 316);
+            this.foldLbl.Size = new System.Drawing.Size(38, 417);
             this.foldLbl.TabIndex = 12;
             this.foldLbl.Text = "点击展开";
             this.foldLbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
