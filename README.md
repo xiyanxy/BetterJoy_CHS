@@ -1,6 +1,6 @@
 <div align=center><img src="https://oscimg.oschina.net/oscnet/up-1xhr7zmon7atri87vn4j7fcouoltlpvh"/></div>
 
-# BetterJoy v6.3+ 非官方自定版本
+# BetterJoy v6.4α 非官方自定版本
 
 提供任天堂Switch Pro手柄，Joycons，Switch SNES手柄与cemu(搭配Cemuhook), Citra，Dolphin，Yuzu以及系统范围通用的XInput支持。
 
@@ -32,16 +32,16 @@
 * 从版本3开始，你可以使用Switch pro手柄和Joycons作为PC上的普通xbox手柄-用Steam试试
 
 # 更多
-查看[wiki](https://github.com/xiyanxy/BetterJoy_CHS/wiki)! 你会发现各种各样的优点，比如变更日志，应用程序设置的描述，常见问题和问题页面，以及如何让BetterJoy与Steam更好协同工作的信息.
+请查看[WiKi](https://github.com/xiyanxy/BetterJoy_CHS/wiki)! 你会发现各种各样的优点，比如变更日志，应用程序设置的描述，常见问题和问题页面，以及如何让BetterJoy与Steam更好协同工作的信息.
 
 # 连接/断开手柄连接(以Switch Pro手柄为例)
 ## 蓝牙模式
  * 比如按住Switch Pro手柄顶部配对小按钮5秒钟 - 这会使手柄进入广播扫描模式。
  * 在你的蓝牙设置中搜索并正常配对。
- * 要断开连接 - 按住主屏幕(Home)按钮（或截图按钮）2秒钟（或按顶部配对小按钮）。要重新连接 - 按下控制器上的任何按钮都可以。
+ * 要断开连接 - 按住主屏幕(Home)按钮（或截图按钮）2秒钟（或按顶部配对小按钮）。要重新连接 - 按下手柄上的任何按钮都可以。
 
 ## USB连接
- * 将手柄数据项插入计算机USB.
+ * 将手柄数据线插入计算机USB口.
 
 ## 移除手柄连接 \[Windows 10且以Switch Pro手柄为例]
 1. 去"设置" -> "设备" -> "蓝牙和其他设备

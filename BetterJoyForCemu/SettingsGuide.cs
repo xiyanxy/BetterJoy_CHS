@@ -46,6 +46,18 @@ namespace BetterJoyForCemu {
                 settingsinfo.Clear();
                 settingsinfo.Text = "是否启用振动。 默认值：启用";
             }
+            if (mysettings.Text.Equals("启用晃动输入")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "当晃动手柄时启用输入，此功能目前仅用于DS4手柄，用于代替触摸板输入(DirectInput上的按钮13)";
+            }
+            if (mysettings.Text.Equals("晃动输入灵敏度")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "晃动检测灵敏度，默认值:10";
+            }
+            if (mysettings.Text.Equals("晃动输入时间间隔")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "晃动输入以毫秒为单位多久时间间隔运行，这个值不要低于15";
+            }
             if (mysettings.Text.Equals("交换AB键")) {
                 settingsinfo.Clear();
                 settingsinfo.Text = "交换AB按钮；如果启用，则通过按钮名称而不是物理布局模拟（一半）Xbox布局";

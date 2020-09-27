@@ -25,8 +25,8 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(_3rdPartyControllers));
-            this.手柄列表 = new System.Windows.Forms.ListBox();
-            this.自定义手柄列表 = new System.Windows.Forms.ListBox();
+            this.list_allControllers = new System.Windows.Forms.ListBox();
+            this.list_customControllers = new System.Windows.Forms.ListBox();
             this.btn_add = new System.Windows.Forms.Button();
             this.btn_remove = new System.Windows.Forms.Button();
             this.group_props = new System.Windows.Forms.GroupBox();
@@ -41,29 +41,29 @@
             this.group_props.SuspendLayout();
             this.SuspendLayout();
             // 
-            // 手柄列表
+            // list_allControllers
             // 
-            this.手柄列表.FormattingEnabled = true;
-            this.手柄列表.ItemHeight = 20;
-            this.手柄列表.Location = new System.Drawing.Point(18, 41);
-            this.手柄列表.Margin = new System.Windows.Forms.Padding(4);
-            this.手柄列表.Name = "手柄列表";
-            this.手柄列表.Size = new System.Drawing.Size(155, 344);
-            this.手柄列表.TabIndex = 0;
-            this.手柄列表.SelectedValueChanged += new System.EventHandler(this.list_allControllers_SelectedValueChanged);
-            this.手柄列表.MouseDown += new System.Windows.Forms.MouseEventHandler(this.list_allControllers_MouseDown);
+            this.list_allControllers.FormattingEnabled = true;
+            this.list_allControllers.ItemHeight = 20;
+            this.list_allControllers.Location = new System.Drawing.Point(18, 41);
+            this.list_allControllers.Margin = new System.Windows.Forms.Padding(4);
+            this.list_allControllers.Name = "list_allControllers";
+            this.list_allControllers.Size = new System.Drawing.Size(155, 344);
+            this.list_allControllers.TabIndex = 0;
+            this.list_allControllers.SelectedValueChanged += new System.EventHandler(this.list_allControllers_SelectedValueChanged);
+            this.list_allControllers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.list_allControllers_MouseDown);
             // 
-            // 自定义手柄列表
+            // list_customControllers
             // 
-            this.自定义手柄列表.FormattingEnabled = true;
-            this.自定义手柄列表.ItemHeight = 20;
-            this.自定义手柄列表.Location = new System.Drawing.Point(253, 41);
-            this.自定义手柄列表.Margin = new System.Windows.Forms.Padding(4);
-            this.自定义手柄列表.Name = "自定义手柄列表";
-            this.自定义手柄列表.Size = new System.Drawing.Size(163, 164);
-            this.自定义手柄列表.TabIndex = 1;
-            this.自定义手柄列表.SelectedValueChanged += new System.EventHandler(this.list_customControllers_SelectedValueChanged);
-            this.自定义手柄列表.MouseDown += new System.Windows.Forms.MouseEventHandler(this.list_customControllers_MouseDown);
+            this.list_customControllers.FormattingEnabled = true;
+            this.list_customControllers.ItemHeight = 20;
+            this.list_customControllers.Location = new System.Drawing.Point(253, 41);
+            this.list_customControllers.Margin = new System.Windows.Forms.Padding(4);
+            this.list_customControllers.Name = "list_customControllers";
+            this.list_customControllers.Size = new System.Drawing.Size(163, 164);
+            this.list_customControllers.TabIndex = 1;
+            this.list_customControllers.SelectedValueChanged += new System.EventHandler(this.list_customControllers_SelectedValueChanged);
+            this.list_customControllers.MouseDown += new System.Windows.Forms.MouseEventHandler(this.list_customControllers_MouseDown);
             // 
             // btn_add
             // 
@@ -186,8 +186,8 @@
             this.Controls.Add(this.group_props);
             this.Controls.Add(this.btn_remove);
             this.Controls.Add(this.btn_add);
-            this.Controls.Add(this.自定义手柄列表);
-            this.Controls.Add(this.手柄列表);
+            this.Controls.Add(this.list_customControllers);
+            this.Controls.Add(this.list_allControllers);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -207,8 +207,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox 手柄列表;
-        private System.Windows.Forms.ListBox 自定义手柄列表;
+        private System.Windows.Forms.ListBox list_allControllers;
+        private System.Windows.Forms.ListBox list_customControllers;
         private System.Windows.Forms.Button btn_add;
         private System.Windows.Forms.Button btn_remove;
         private System.Windows.Forms.GroupBox group_props;

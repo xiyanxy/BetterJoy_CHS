@@ -22,6 +22,9 @@ namespace BetterJoyForCemu {
 		private Timer countDown;
 		private int count;
 		public List<int> xG, yG, zG, xA, yA, zA;
+        public bool shakeInputEnabled = Boolean.Parse(ConfigurationManager.AppSettings["启用晃动输入"]);
+        public float shakeSesitivity = float.Parse(ConfigurationManager.AppSettings["晃动输入灵敏度"]);
+        public float shakeDelay = float.Parse(ConfigurationManager.AppSettings["晃动输入时间间隔"]);
 
 		public MainForm() {
 			xG = new List<int>(); yG = new List<int>(); zG = new List<int>();

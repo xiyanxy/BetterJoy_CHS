@@ -51,7 +51,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(316, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "版本编辑者: 曦颜XY  个人版本: 1.00";
+            this.label2.Text = "版本编辑者: 曦颜XY  个人版本: 2.00";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // mysettings
@@ -66,6 +66,9 @@
             "低频振动",
             "高频振动",
             "启用振动",
+            "启用晃动输入",
+            "晃动输入灵敏度",
+            "晃动输入时间间隔",
             "交换AB键",
             "交换XY键",
             "陀螺仪模拟",
@@ -124,7 +127,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(397, 312);
+            this.ClientSize = new System.Drawing.Size(460, 312);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.settingsinfo);
             this.Controls.Add(this.label3);

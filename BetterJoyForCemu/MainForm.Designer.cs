@@ -102,9 +102,9 @@
             this.version_lbl.Location = new System.Drawing.Point(285, 383);
             this.version_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.version_lbl.Name = "version_lbl";
-            this.version_lbl.Size = new System.Drawing.Size(77, 20);
+            this.version_lbl.Size = new System.Drawing.Size(89, 20);
             this.version_lbl.TabIndex = 2;
-            this.version_lbl.Text = "版本: v6.3";
+            this.version_lbl.Text = "版本: V6.4α";
             // 
             // passiveScanBox
             // 

@@ -40,7 +40,7 @@ namespace BetterJoyForCemu {
             }
 
             public override string ToString() {
-                return name;
+                return name ?? $"未识别设备 ({this.product_id})";
             }
 
             public string Serialise() {
@@ -56,7 +56,7 @@ namespace BetterJoyForCemu {
             list_allControllers.ValueMember = "Value";
             list_customControllers.DisplayMember = "Text";
             list_customControllers.ValueMember = "Value";*/
-            手柄列表.HorizontalScrollbar = true; 自定义手柄列表.HorizontalScrollbar = true;
+            list_allControllers.HorizontalScrollbar = true; list_customControllers.HorizontalScrollbar = true;
 
             chooseType.Items.AddRange(new String[] { "Switch Pro手柄", "左Joycon", "右Joycon" });
 
@@ -69,7 +69,7 @@ namespace BetterJoyForCemu {
                     string line = String.Empty;
                     while ((line = file.ReadLine()) != null && (line != String.Empty)) {
                         String[] split = line.Split('|');
-                        自定义手柄列表.Items.Add(new SController(split[0], ushort.Parse(split[1]), ushort.Parse(split[2]), byte.Parse(split[3])));
+                        list_customControllers.Items.Add(new SController(split[0], ushort.Parse(split[1]), ushort.Parse(split[2]), byte.Parse(split[3])));
                     }
                 }
             }
@@ -80,7 +80,7 @@ namespace BetterJoyForCemu {
 
         public void CopyCustomControllers() {
             Program.thirdPartyCons.Clear();
-            foreach (SController v in 自定义手柄列表.Items) {
+            foreach (SController v in list_customControllers.Items) {
                 Program.thirdPartyCons.Add(v);
             }
         }
@@ -98,7 +98,7 @@ namespace BetterJoyForCemu {
         }
 
         private void RefreshControllerList() {
-            手柄列表.Items.Clear();
+            list_allControllers.Items.Clear();
             IntPtr ptr = HIDapi.hid_enumerate(0x0, 0x0);
             IntPtr top_ptr = ptr;
 
@@ -112,8 +112,8 @@ namespace BetterJoyForCemu {
                 }
 
                 // TODO: try checking against interface number instead
-                if (!ContainsText(自定义手柄列表, enumerate.product_string) && !ContainsText(手柄列表, enumerate.product_string)) {
-                    手柄列表.Items.Add(new SController(enumerate.product_string, enumerate.vendor_id, enumerate.product_id, 0));
+                if (!ContainsText(list_customControllers, enumerate.product_string) && !ContainsText(list_allControllers, enumerate.product_string)) {
+                    list_allControllers.Items.Add(new SController(enumerate.product_string, enumerate.vendor_id, enumerate.product_id, 0));
                     // 0 type is undefined
                 }
 
@@ -123,26 +123,26 @@ namespace BetterJoyForCemu {
         }
 
         private void btn_add_Click(object sender, EventArgs e) {
-            if (手柄列表.SelectedItem != null) {
-                自定义手柄列表.Items.Add(手柄列表.SelectedItem);
-                手柄列表.Items.Remove(手柄列表.SelectedItem);
+            if (list_allControllers.SelectedItem != null) {
+                list_customControllers.Items.Add(list_allControllers.SelectedItem);
+                list_allControllers.Items.Remove(list_allControllers.SelectedItem);
 
-                手柄列表.ClearSelected();
+                list_allControllers.ClearSelected();
             }
         }
 
         private void btn_remove_Click(object sender, EventArgs e) {
-            if (自定义手柄列表.SelectedItem != null) {
-                手柄列表.Items.Add(自定义手柄列表.SelectedItem);
-                自定义手柄列表.Items.Remove(自定义手柄列表.SelectedItem);
+            if (list_customControllers.SelectedItem != null) {
+                list_allControllers.Items.Add(list_customControllers.SelectedItem);
+                list_customControllers.Items.Remove(list_customControllers.SelectedItem);
 
-                自定义手柄列表.ClearSelected();
+                list_customControllers.ClearSelected();
             }
         }
 
         private void btn_apply_Click(object sender, EventArgs e) {
             String sc = "";
-            foreach (SController v in 自定义手柄列表.Items) {
+            foreach (SController v in list_customControllers.Items) {
                 sc += v.Serialise() + "\r\n";
             }
             File.WriteAllText(PATH, sc);
@@ -163,14 +163,14 @@ namespace BetterJoyForCemu {
         }
 
         private void list_allControllers_SelectedValueChanged(object sender, EventArgs e) {
-            if (手柄列表.SelectedItem != null)
-                tip_device.Show((手柄列表.SelectedItem as SController).name, 手柄列表);
+            if (list_allControllers.SelectedItem != null)
+                tip_device.Show((list_allControllers.SelectedItem as SController).name, list_allControllers);
         }
 
         private void list_customControllers_SelectedValueChanged(object sender, EventArgs e) {
-            if (自定义手柄列表.SelectedItem != null) {
-                SController v = (自定义手柄列表.SelectedItem as SController);
-                tip_device.Show(v.name, 自定义手柄列表);
+            if (list_customControllers.SelectedItem != null) {
+                SController v = (list_customControllers.SelectedItem as SController);
+                tip_device.Show(v.name, list_customControllers);
 
                 chooseType.SelectedIndex = v.type - 1;
 
@@ -182,18 +182,18 @@ namespace BetterJoyForCemu {
         }
 
         private void list_customControllers_MouseDown(object sender, MouseEventArgs e) {
-            if (e.Y > 自定义手柄列表.ItemHeight * 自定义手柄列表.Items.Count)
-                自定义手柄列表.SelectedItems.Clear();
+            if (e.Y > list_customControllers.ItemHeight * list_customControllers.Items.Count)
+                list_customControllers.SelectedItems.Clear();
         }
 
         private void list_allControllers_MouseDown(object sender, MouseEventArgs e) {
-            if (e.Y > 手柄列表.ItemHeight * 手柄列表.Items.Count)
-                手柄列表.SelectedItems.Clear();
+            if (e.Y > list_allControllers.ItemHeight * list_allControllers.Items.Count)
+                list_allControllers.SelectedItems.Clear();
         }
 
         private void chooseType_SelectedValueChanged(object sender, EventArgs e) {
-            if (自定义手柄列表.SelectedItem != null) {
-                SController v = (自定义手柄列表.SelectedItem as SController);
+            if (list_customControllers.SelectedItem != null) {
+                SController v = (list_customControllers.SelectedItem as SController);
                 v.type = (byte)(chooseType.SelectedIndex + 1);
             }
         }
