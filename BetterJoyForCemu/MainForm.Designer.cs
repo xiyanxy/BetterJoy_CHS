@@ -1,28 +1,28 @@
 ﻿namespace BetterJoyForCemu {
-	partial class MainForm {
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+    partial class MainForm {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing) {
-			if (disposing && (components != null)) {
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing) {
+            if (disposing && (components != null)) {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent() {
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.console = new System.Windows.Forms.TextBox();
@@ -306,7 +306,7 @@
             // 
             // settingsTable
             // 
-            this.settingsTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.settingsTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsTable.AutoScroll = true;
             this.settingsTable.ColumnCount = 2;
@@ -418,15 +418,15 @@
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
+        }
 
-		#endregion
+        #endregion
 
-		public System.Windows.Forms.TextBox console;
-		public System.Windows.Forms.NotifyIcon notifyIcon;
-		private System.Windows.Forms.Label version_lbl;
-		private System.Windows.Forms.ContextMenuStrip contextMenu;
-		private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        public System.Windows.Forms.TextBox console;
+        public System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.Label version_lbl;
+        private System.Windows.Forms.ContextMenuStrip contextMenu;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.CheckBox passiveScanBox;
         private System.Windows.Forms.LinkLabel donationLink;
         private System.Windows.Forms.GroupBox conCntrls;
@@ -446,7 +446,7 @@
         private System.Windows.Forms.Button settingsApply;
         private System.Windows.Forms.Label foldLbl;
         private System.Windows.Forms.Button AutoCalibrate;
-		private System.Windows.Forms.Button btn_reassign_open;
+        private System.Windows.Forms.Button btn_reassign_open;
         private System.Windows.Forms.Label xiyanxy_guide;
         private System.Windows.Forms.Button loc1;
     }

@@ -122,6 +122,7 @@ namespace BetterJoyForCemu {
 
         private void btn_apply_Click(object sender, EventArgs e) {
             Config.Save();
+            Close();
         }
 
         private void btn_close_Click(object sender, EventArgs e) {

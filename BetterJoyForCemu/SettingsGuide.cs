@@ -94,9 +94,9 @@ namespace BetterJoyForCemu {
                 settingsinfo.Clear();
                 settingsinfo.Text = "保持Switch Pro手柄HOME键LED环形灯一直亮着";
             }
-            if (mysettings.Text.Equals("陀螺仪使用Joy或鼠标")) {
+            if (mysettings.Text.Equals("陀螺仪使用Joycons或鼠标")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "确定是否将陀螺仪运作转换为 joycons操纵杆（文本框填入“ joy”（未实现）或鼠标操控（文本框填入“ mouse”），或者是否无效（文本框“ none”）";
+                settingsinfo.Text = "将陀螺仪运作方式改为 joycons操纵杆（文本框填入joy（未实现）或鼠标操控（文本框填入mouse），或者不使用此功能（文本框填入none）";
             }
             if (mysettings.Text.Equals("鼠标模拟陀螺仪敏感度")) {
                 settingsinfo.Clear();
