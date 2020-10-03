@@ -51,7 +51,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(316, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "版本编辑者: 曦颜XY  个人版本: 3.00";
+            this.label2.Text = "版本编辑者: 曦颜XY  个人版本: 4.00";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // mysettings

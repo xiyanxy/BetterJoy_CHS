@@ -356,6 +356,49 @@ namespace BetterJoyForCemu {
             xiyanxy.ShowDialog();
         }
 
+        private void reset_Click(object sender, EventArgs e) {
+            var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var settings = configFile.AppSettings.Settings;
+            settings["IP"].Value = "127.0.0.1";
+            settings["端口"].Value = "26760";
+            settings["启用体感服务"].Value = "true";
+            settings["振动周期"].Value = "300";
+            settings["低频振动"].Value = "40";
+            settings["高频振动"].Value = "120";
+            settings["启用振动"].Value = "true";
+            settings["启用晃动输入"].Value = "false";
+            settings["晃动输入灵敏度"].Value = "10";
+            settings["晃动输入时间间隔"].Value = "200";
+            settings["交换AB键"].Value = "false";
+            settings["交换XY键"].Value = "false";
+            settings["陀螺仪模拟"].Value = "false";
+            settings["陀螺仪模拟敏感度"].Value = "20";
+            settings["清除影响设备"].Value = "false";
+            settings["清除白名单"].Value = "false";
+            settings["使用HIDG"].Value = "false";
+            settings["非原装手柄支持"].Value = "false";
+            settings["开启Home键LED灯"].Value = "true";
+            settings["陀螺仪使用Joycons或鼠标"].Value = "none";
+            settings["鼠标模拟陀螺仪敏感度"].Value = "50";
+            settings["通过按住或切换使用陀螺仪"].Value = "true";
+            settings["鼠标左陀螺仪"].Value = "false";
+            settings["鼠标拖动"].Value = "false";
+            settings["以XInput显示"].Value = "true";
+            settings["以DS4显示"].Value = "false";
+            settings["自动断开连接"].Value = "false";
+            settings["不使用时自动断开连接"].Value = "-1";
+            settings["长按Home键断开连接"].Value = "true";
+            try {
+                configFile.Save(ConfigurationSaveMode.Modified);
+            } catch (ConfigurationErrorsException) {
+                AppendTextBox("软件功能恢复默认设置失败.\r\n");
+            }
+
+            ConfigurationManager.AppSettings["自动断开连接"] = "false";  // Prevent joycons poweroff when applying settings
+            Application.Restart();
+            Environment.Exit(0);
+        }
+
         private void CountDown(object sender, EventArgs e) {
             if (this.count == 0) {
                 this.console.Text = "校准中...";

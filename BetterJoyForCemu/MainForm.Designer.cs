@@ -48,6 +48,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.settingsTable = new System.Windows.Forms.TableLayoutPanel();
             this.rightPanel = new System.Windows.Forms.Panel();
+            this.reset = new System.Windows.Forms.Button();
             this.xiyanxy_guide = new System.Windows.Forms.Label();
             this.settingsApply = new System.Windows.Forms.Button();
             this.AutoCalibrate = new System.Windows.Forms.Button();
@@ -99,7 +100,7 @@
             // 
             this.version_lbl.AutoSize = true;
             this.version_lbl.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.version_lbl.Location = new System.Drawing.Point(285, 383);
+            this.version_lbl.Location = new System.Drawing.Point(281, 382);
             this.version_lbl.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.version_lbl.Name = "version_lbl";
             this.version_lbl.Size = new System.Drawing.Size(89, 20);
@@ -126,7 +127,7 @@
             // 
             this.donationLink.AutoSize = true;
             this.donationLink.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.donationLink.Location = new System.Drawing.Point(234, 383);
+            this.donationLink.Location = new System.Drawing.Point(239, 382);
             this.donationLink.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.donationLink.Name = "donationLink";
             this.donationLink.Size = new System.Drawing.Size(39, 20);
@@ -270,7 +271,7 @@
             // 
             this.startInTrayBox.AutoSize = true;
             this.startInTrayBox.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.startInTrayBox.Location = new System.Drawing.Point(116, 382);
+            this.startInTrayBox.Location = new System.Drawing.Point(120, 381);
             this.startInTrayBox.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.startInTrayBox.Name = "startInTrayBox";
             this.startInTrayBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -306,7 +307,7 @@
             // 
             // settingsTable
             // 
-            this.settingsTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.settingsTable.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsTable.AutoScroll = true;
             this.settingsTable.ColumnCount = 2;
@@ -322,6 +323,7 @@
             // 
             // rightPanel
             // 
+            this.rightPanel.Controls.Add(this.reset);
             this.rightPanel.Controls.Add(this.xiyanxy_guide);
             this.rightPanel.Controls.Add(this.settingsApply);
             this.rightPanel.Controls.Add(this.groupBox1);
@@ -332,6 +334,19 @@
             this.rightPanel.Size = new System.Drawing.Size(412, 395);
             this.rightPanel.TabIndex = 11;
             this.rightPanel.Visible = false;
+            // 
+            // reset
+            // 
+            this.reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.reset.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reset.Location = new System.Drawing.Point(219, 355);
+            this.reset.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.reset.Name = "reset";
+            this.reset.Size = new System.Drawing.Size(91, 37);
+            this.reset.TabIndex = 17;
+            this.reset.Text = "恢复默认";
+            this.reset.UseVisualStyleBackColor = true;
+            this.reset.Click += new System.EventHandler(this.reset_Click);
             // 
             // xiyanxy_guide
             // 
@@ -449,5 +464,6 @@
         private System.Windows.Forms.Button btn_reassign_open;
         private System.Windows.Forms.Label xiyanxy_guide;
         private System.Windows.Forms.Button loc1;
+        private System.Windows.Forms.Button reset;
     }
 }
