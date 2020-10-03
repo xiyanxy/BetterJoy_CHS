@@ -14,7 +14,7 @@
 这真是一段疯狂的旅程，在GitHub上有近11万的官方下载，也许在午夜还会有更多。我认为这个项目给予我到目前为止得到的两个工作的帮助，所以我很自豪。
 
 ### 截图
-![Example](https://wx2.sinaimg.cn/mw690/006advZlly1gitisy9hzsj30ku0oj4c8.jpg)
+![Example](https://wx3.sinaimg.cn/mw690/006advZlly1gjbxvhzcqlj30m10ou4am.jpg)
 
 # 下载
 去看看 [Releases栏](https://github.com/xiyanxy/BetterJoy_CHS/releases/)
