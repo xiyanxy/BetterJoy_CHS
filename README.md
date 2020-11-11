@@ -1,6 +1,6 @@
 <div align=center><img src="https://oscimg.oschina.net/oscnet/up-1xhr7zmon7atri87vn4j7fcouoltlpvh"/></div>
 
-# BetterJoy v6.4α 非官方自定版本
+# BetterJoy v6.4α 非官方自定版本 仅支持64位操作系统
 
 提供任天堂Switch Pro手柄，Joycons，Switch SNES手柄与cemu(搭配Cemuhook), Citra，Dolphin，Yuzu以及系统范围通用的XInput支持。
 

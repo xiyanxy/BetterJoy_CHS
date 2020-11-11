@@ -168,17 +168,6 @@
             this.loc4.Text = "验证连接";
             this.loc4.UseVisualStyleBackColor = true;
             // 
-            // loc1
-            // 
-            this.loc1.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.loc1.Location = new System.Drawing.Point(8, 97);
-            this.loc1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.loc1.Name = "loc1";
-            this.loc1.Size = new System.Drawing.Size(83, 32);
-            this.loc1.TabIndex = 14;
-            this.loc1.Text = "验证连接";
-            this.loc1.UseVisualStyleBackColor = true;
-            // 
             // loc3
             // 
             this.loc3.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -200,6 +189,17 @@
             this.loc2.TabIndex = 5;
             this.loc2.Text = "验证连接";
             this.loc2.UseVisualStyleBackColor = true;
+            // 
+            // loc1
+            // 
+            this.loc1.Font = new System.Drawing.Font("Microsoft YaHei UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.loc1.Location = new System.Drawing.Point(8, 97);
+            this.loc1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.loc1.Name = "loc1";
+            this.loc1.Size = new System.Drawing.Size(83, 32);
+            this.loc1.TabIndex = 4;
+            this.loc1.Text = "验证连接";
+            this.loc1.UseVisualStyleBackColor = true;
             // 
             // con4
             // 

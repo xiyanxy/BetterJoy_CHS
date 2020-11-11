@@ -15,7 +15,9 @@ using System.Xml.Linq;
 
 namespace BetterJoyForCemu {
     public partial class MainForm : Form {
-        public bool nonOriginal = Boolean.Parse(ConfigurationManager.AppSettings["非原装手柄支持"]);
+        public bool useControllerStickCalibration;
+        public bool nonOriginal;
+        public bool allowCalibration = Boolean.Parse(ConfigurationManager.AppSettings["允许手柄校准"]);
         public List<Button> con, loc;
         public bool calibrate;
         public List<KeyValuePair<string, float[]>> caliData;
@@ -26,20 +28,24 @@ namespace BetterJoyForCemu {
         public float shakeSesitivity = float.Parse(ConfigurationManager.AppSettings["晃动输入灵敏度"]);
         public float shakeDelay = float.Parse(ConfigurationManager.AppSettings["晃动输入时间间隔"]);
 
+        public enum NonOriginalController : int {
+            Disabled = 0,
+            DefaultCalibration = 1,
+            ControllerCalibration = 2,
+        }
+
         public MainForm() {
             xG = new List<int>(); yG = new List<int>(); zG = new List<int>();
             xA = new List<int>(); yA = new List<int>(); zA = new List<int>();
             caliData = new List<KeyValuePair<string, float[]>> {
                 new KeyValuePair<string, float[]>("0", new float[6] {0,0,0,-710,0,0})
             };
+            SetNonOriginalControllerSettings();
 
             InitializeComponent();
 
-            if (!nonOriginal)
+            if (!allowCalibration)
                 AutoCalibrate.Hide();
-
-            // Feature not yet implemented - hide
-            // btn_open3rdP.Hide();
 
             con = new List<Button> { con1, con2, con3, con4 };
             loc = new List<Button> { loc1, loc2, loc3, loc4 };
@@ -61,6 +67,28 @@ namespace BetterJoyForCemu {
 
                 childControl.MouseClick += cbBox_Changed;
                 settingsTable.Controls.Add(childControl, 1, i);
+            }
+        }
+
+        private void SetNonOriginalControllerSettings() {
+            Enum.TryParse(ConfigurationManager.AppSettings["非原装手柄支持"], true, out NonOriginalController nonOriginalController);
+            switch ((int)nonOriginalController) {
+                case 0:
+                    nonOriginal = false;
+                    break;
+                case 1:
+                case 2:
+                    nonOriginal = true;
+                    break;       
+            }
+            switch ((int)nonOriginalController) {
+                case 0:
+                case 2:
+                    useControllerStickCalibration = true;
+                    break;
+                case 1:
+                    useControllerStickCalibration = false;
+                    break;
             }
         }
 
@@ -94,7 +122,7 @@ namespace BetterJoyForCemu {
 
         private void MainForm_Load(object sender, EventArgs e) {
             Config.Init(caliData);
-            loc1.TabIndex = 0;
+
             Program.Start();
 
             passiveScanBox.Checked = Config.IntValue("ProgressiveScan") == 1;
@@ -144,7 +172,7 @@ namespace BetterJoyForCemu {
         bool showAsXInput = Boolean.Parse(ConfigurationManager.AppSettings["以XInput显示"]);
         bool showAsDS4 = Boolean.Parse(ConfigurationManager.AppSettings["以DS4显示"]);
 
-        public void locBtnClick(object sender, EventArgs e) {
+        public async void locBtnClickAsync(object sender, EventArgs e) {
             Button bb = sender as Button;
 
             if (bb.Tag.GetType() == typeof(Button)) {
@@ -152,7 +180,14 @@ namespace BetterJoyForCemu {
 
                 if (button.Tag.GetType() == typeof(Joycon)) {
                     Joycon v = (Joycon)button.Tag;
-                    v.SetRumble(20.0f, 130f, 1.0f, 300);
+					/* Switch Pro适合的振动测试数据(就是点击"验证测试"按钮时手柄振动强度)
+					v.SetRumble(20.0f, 120.0f, 1.0f); 
+                    await Task.Delay(300);
+                    v.SetRumble(20.0f, 120.0f, 0);
+					*/
+                    v.SetRumble(160.0f, 320.0f, 1.0f); 
+                    await Task.Delay(300);
+                    v.SetRumble(160.0f, 320.0f, 0);
                 }
             }
         }
@@ -319,7 +354,7 @@ namespace BetterJoyForCemu {
         }
         private void StartCalibrate(object sender, EventArgs e) {
             if (Program.mgr.j.Count == 0) {
-                this.console.Text = "请连接一个pro手柄.";
+                this.console.Text = "请只连接一个pro手柄.";
                 return;
             }
             if (Program.mgr.j.Count > 1) {
@@ -362,7 +397,6 @@ namespace BetterJoyForCemu {
             settings["IP"].Value = "127.0.0.1";
             settings["端口"].Value = "26760";
             settings["启用体感服务"].Value = "true";
-            settings["振动周期"].Value = "300";
             settings["低频振动"].Value = "40";
             settings["高频振动"].Value = "120";
             settings["启用振动"].Value = "true";
@@ -371,12 +405,13 @@ namespace BetterJoyForCemu {
             settings["晃动输入时间间隔"].Value = "200";
             settings["交换AB键"].Value = "false";
             settings["交换XY键"].Value = "false";
+			settings["允许手柄校准"].Value = "true";
             settings["陀螺仪模拟"].Value = "false";
             settings["陀螺仪模拟敏感度"].Value = "20";
             settings["清除影响设备"].Value = "false";
             settings["清除白名单"].Value = "false";
             settings["使用HIDG"].Value = "false";
-            settings["非原装手柄支持"].Value = "false";
+            settings["非原装手柄支持"].Value = "Disabled";
             settings["开启Home键LED灯"].Value = "true";
             settings["陀螺仪使用Joycons或鼠标"].Value = "none";
             settings["鼠标模拟陀螺仪敏感度"].Value = "50";
@@ -388,6 +423,7 @@ namespace BetterJoyForCemu {
             settings["自动断开连接"].Value = "false";
             settings["不使用时自动断开连接"].Value = "-1";
             settings["长按Home键断开连接"].Value = "true";
+			settings["调试类型"].Value = "0";
             try {
                 configFile.Save(ConfigurationSaveMode.Modified);
             } catch (ConfigurationErrorsException) {
@@ -432,7 +468,7 @@ namespace BetterJoyForCemu {
                 Arr[3] = (float)quickselect_median(this.xA, rnd.Next);
                 Arr[4] = (float)quickselect_median(this.yA, rnd.Next);
                 Arr[5] = (float)quickselect_median(this.zA, rnd.Next) - 4010; //Joycon.cs acc_sen 16384
-                this.console.Text += "校准完成!!!" + "\r\n";
+                this.console.Text += "校准完成,小老弟!!!" + "\r\n";
                 Config.SaveCaliData(this.caliData);
                 Program.mgr.j.First().getActiveData();
                 this.AutoCalibrate.Enabled = true;

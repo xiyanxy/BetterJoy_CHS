@@ -13,7 +13,7 @@ namespace BetterJoyForCemu {
     public partial class SettingsGuide : Form {
         public SettingsGuide() {
             InitializeComponent();
-            mysettings.Text = "关于我";
+            mysettings.Text = "**关于我**";
             settingsinfo.Text = "欢迎使用(微博&Bilibili：曦颜XY)汉化定制优化的BetterJoy！有问题记得找我反馈(＾Ｕ＾)ノ~";
         }
 
@@ -24,7 +24,7 @@ namespace BetterJoyForCemu {
         private void mysettings_SelectedIndexChanged(object sender, EventArgs e) {
             if (mysettings.Text.Equals("IP")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "体感服务器IP：默认值为localhost；你可以将其更改为0.0.0.0（所有接口）或特定的LAN IP（如果要从网络中的另一台计算机访问服务器，也可用），默认: 127.0.0.1";
+                settingsinfo.Text = "体感服务器IP：默认值为localhost；你可以将其更改为0.0.0.0（所有接口）或特定的LAN IP(如果要从网络中的另一台计算机访问服务器，也可用)，默认: 127.0.0.1";
             }
             if (mysettings.Text.Equals("端口")) {
                 settingsinfo.Clear();
@@ -33,10 +33,6 @@ namespace BetterJoyForCemu {
             if (mysettings.Text.Equals("启用体感服务")) {
                 settingsinfo.Clear();
                 settingsinfo.Text = "是否启用体感服务。 默认值：启用";
-            }
-            if (mysettings.Text.Equals("振动周期")) {
-                settingsinfo.Clear();
-                settingsinfo.Text = "以毫秒为单位的振动周期。较低意味着更细微的振动，较高则更稳重。振动响应不仅取决于此设置，始终都很高。默认值：300";
             }
             if (mysettings.Text.Equals("低频振动") || mysettings.Text.Equals("高频振动")) {
                 settingsinfo.Clear();
@@ -60,15 +56,19 @@ namespace BetterJoyForCemu {
             }
             if (mysettings.Text.Equals("交换AB键")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "交换AB按钮；如果启用，则通过按钮名称而不是物理布局模拟（一半）Xbox布局，默认：不启用";
+                settingsinfo.Text = "交换AB按钮；如果启用，则通过按钮名称而不是物理布局模拟(一半)Xbox布局，默认：不启用";
             }
             if (mysettings.Text.Equals("交换XY键")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "交换XY按钮；如果启用，则通过按钮名称而不是物理布局模拟（一半）Xbox布局，默认：不启用";
+                settingsinfo.Text = "交换XY按钮；如果启用，则通过按钮名称而不是物理布局模拟(一半)Xbox布局，默认：不启用";
+            }
+            if (mysettings.Text.Equals("允许手柄校准")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "允许校准控制器的陀螺仪，可设置为：true或false。文本框填入'true'时点击'校准'按钮一次，得到陀螺校准数据，并且一次只能校准一个手柄。默认值：true";
             }
             if (mysettings.Text.Equals("陀螺仪模拟")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "允许使用陀螺仪倾斜来完全控制滑块值（大触发器）, 适用于Switch Pro手柄和Joycons（Switch Pro手柄-组合触发器，Joycons-单独倾斜），默认：不启用";
+                settingsinfo.Text = "允许使用陀螺仪倾斜来完全控制滑块值(大触发器), 适用于Switch Pro手柄和Joycons（Switch Pro手柄-组合触发器，Joycons-单独倾斜），默认：不启用";
             }
             if (mysettings.Text.Equals("陀螺仪模拟敏感度")) {
                 settingsinfo.Clear();
@@ -76,7 +76,7 @@ namespace BetterJoyForCemu {
             }
             if (mysettings.Text.Equals("清除影响设备")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "确定程序是否应该在退出时清除受影响的设备列表。应该解决在程序后出现手柄无法使用的更多问题（可以阅读README.md也可以解决此问题）,默认：不启用";
+                settingsinfo.Text = "确定程序是否应该在退出时清除受影响的设备列表。应该解决在程序后出现手柄无法使用的更多问题(可以阅读README.md也可以解决此问题),默认：不启用";
             }
             if (mysettings.Text.Equals("清除白名单")) {
                 settingsinfo.Clear();
@@ -88,7 +88,7 @@ namespace BetterJoyForCemu {
             }
             if (mysettings.Text.Equals("非原装手柄支持")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "确定是否启用对第三方手柄的支持。开启此项将显示“校准”按钮，默认：不启用";
+                settingsinfo.Text = "确定是否为第三方手柄添加支持(实验-当前默认控制器到pro)。可设置为：Disabled或DefaultCalibration或ControllerCalibration(填入不区分大小写)，Disabled => 禁用对第三方控制器的支持。使用来自控制器的操纵杆校准数据。DefaultCalibration => 支持第三方控制器。使用硬编码操纵杆校准数据。ControllerCalibration => 支持第三方控制器。使用来自控制器的操纵杆校准数据。默认：Disabled";
             }
             if (mysettings.Text.Equals("开启Home键LED灯")) {
                 settingsinfo.Clear();
@@ -96,7 +96,7 @@ namespace BetterJoyForCemu {
             }
             if (mysettings.Text.Equals("陀螺仪使用Joycons或鼠标")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "将陀螺仪运作方式改为 joycons操纵杆（文本框填入joy（未实现）或鼠标操控（文本框填入mouse），或者不使用此功能（文本框填入none），默认：none";
+                settingsinfo.Text = "将陀螺仪运作方式改为 joycons操纵杆(文本框填入joy)(未实现)或鼠标操控(文本框填入mouse，按任意一个按键重置到主显示器的中间位置)或者不使用此功能(文本框填入none)，默认：none";
             }
             if (mysettings.Text.Equals("鼠标模拟陀螺仪敏感度")) {
                 settingsinfo.Clear();
@@ -116,11 +116,11 @@ namespace BetterJoyForCemu {
             }
             if (mysettings.Text.Equals("以XInput显示")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "确定程序是否将检测到的手柄以Xbox 360手柄识别，默认：启用";
+                settingsinfo.Text = "确定程序是否将检测到的手柄以Xbox 360手柄识别，不勾选此项时，BetterJoy仅可用于CEMU。默认：启用";
             }
             if (mysettings.Text.Equals("以DS4显示")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "确定程序是否将检测到的手柄以DS4手柄识别，默认：不启用";
+                settingsinfo.Text = "确定程序是否将检测到的手柄以DS4手柄识别，注意：使用此项时，请不要勾选'以XInput显示',默认：不启用";
             }
             if (mysettings.Text.Equals("自动断开连接")) {
                 settingsinfo.Clear();
@@ -133,6 +133,10 @@ namespace BetterJoyForCemu {
             if (mysettings.Text.Equals("长按Home键断开连接")) {
                 settingsinfo.Clear();
                 settingsinfo.Text = "长时间按“截图”或“Home主页”按钮时，断开手柄连接（按2秒+），默认：启用";
+            }
+            if (mysettings.Text.Equals("调试类型")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "你想调试什么？可设置为：0(不调试)、1(全部调试)、2(COMMS)、3(线程)、4(IMU)、5(振动)、6(晃动输入)，默认：0";
             }
             if (mysettings.Text.Equals("**关于我**")) {
                 settingsinfo.Clear();

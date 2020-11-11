@@ -229,7 +229,7 @@ namespace BetterJoyForCemu {
 
                                 form.loc[ii].Invoke(new MethodInvoker(delegate {
                                     form.loc[ii].Tag = v;
-                                    form.loc[ii].Click += new EventHandler(form.locBtnClick);
+                                    form.loc[ii].Click += new EventHandler(form.locBtnClickAsync);
                                 }));
 
                                 break;
@@ -318,7 +318,7 @@ namespace BetterJoyForCemu {
                     }
 
                     jc.Begin();
-                    if (form.nonOriginal) {
+                    if (form.allowCalibration) {
                         jc.getActiveData();
                     }
 
@@ -411,7 +411,7 @@ namespace BetterJoyForCemu {
                 try {
                     emClient = new ViGEmClient(); // Manages emulated XInput
                 } catch (Nefarius.ViGEm.Client.Exceptions.VigemBusNotFoundException) {
-                    form.console.AppendText("无法启用VigemBus.请确认驱动已正确安装.\r\n");
+                    form.console.AppendText("无法启动VigemBus驱动程序.请确认驱动已正确安装.\r\n");
                 }
             }
 

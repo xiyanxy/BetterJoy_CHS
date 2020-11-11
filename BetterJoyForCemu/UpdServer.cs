@@ -397,7 +397,7 @@ namespace BetterJoyForCemu {
                     outIdx += 4;
                 } else {
                     outIdx += 12;
-                    Console.WriteLine("没有加速器.");
+                    Console.WriteLine("没有加速度传感器.");
                 }
             }
 
