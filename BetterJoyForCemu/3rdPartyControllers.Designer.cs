@@ -112,6 +112,7 @@
             // 
             // chooseType
             // 
+            this.chooseType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.chooseType.FormattingEnabled = true;
             this.chooseType.Location = new System.Drawing.Point(83, 33);
             this.chooseType.Margin = new System.Windows.Forms.Padding(4);
