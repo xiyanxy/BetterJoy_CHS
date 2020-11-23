@@ -13,11 +13,11 @@ namespace BetterJoyForCemu {
         private bool running;
         private byte[] recvBuffer = new byte[1024];
 
-        List<Joycon> controllers;
+        IList<Joycon> controllers;
 
         public MainForm form;
 
-        public UdpServer(List<Joycon> p) {
+        public UdpServer(IList<Joycon> p) {
             controllers = p;
         }
 

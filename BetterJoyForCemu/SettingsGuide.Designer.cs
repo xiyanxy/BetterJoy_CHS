@@ -51,7 +51,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(412, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "版本编辑者: 曦颜XY  个人版本: 5.0_2020.11.11";
+            this.label2.Text = "版本编辑者: 曦颜XY  个人版本: 6.0_2020.11.23";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // mysettings
@@ -78,6 +78,7 @@
             "使用HIDG",
             "非原装手柄支持",
             "开启Home键LED灯",
+            "Joycon使用渐进灯光",
             "陀螺仪使用Joycons或鼠标",
             "鼠标模拟陀螺仪敏感度",
             "通过按住或切换使用陀螺仪",
@@ -91,7 +92,7 @@
             "调试类型"});
             this.mysettings.Location = new System.Drawing.Point(126, 83);
             this.mysettings.Name = "mysettings";
-            this.mysettings.Size = new System.Drawing.Size(264, 28);
+            this.mysettings.Size = new System.Drawing.Size(299, 28);
             this.mysettings.TabIndex = 3;
             this.mysettings.SelectedIndexChanged += new System.EventHandler(this.mysettings_SelectedIndexChanged);
             // 
@@ -112,7 +113,7 @@
             this.settingsinfo.Name = "settingsinfo";
             this.settingsinfo.ReadOnly = true;
             this.settingsinfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.settingsinfo.Size = new System.Drawing.Size(264, 131);
+            this.settingsinfo.Size = new System.Drawing.Size(299, 148);
             this.settingsinfo.TabIndex = 5;
             // 
             // label4
@@ -128,7 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(542, 312);
+            this.ClientSize = new System.Drawing.Size(508, 312);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.settingsinfo);
             this.Controls.Add(this.label3);

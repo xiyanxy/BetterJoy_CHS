@@ -14,7 +14,7 @@ namespace BetterJoyForCemu {
         public SettingsGuide() {
             InitializeComponent();
             mysettings.Text = "**关于我**";
-            settingsinfo.Text = "欢迎使用(微博&Bilibili：曦颜XY)汉化定制优化的BetterJoy！有问题记得找我反馈(＾Ｕ＾)ノ~";
+            settingsinfo.Text = "欢迎使用(微博&Bilibili：曦颜XY)汉化定制优化的BetterJoy！有问题记得找我反馈(＾Ｕ＾)ノ~ ，   记得设置后点击'应用设置'来保存您的设置哟！";
         }
 
         private void label2_Click(object sender, EventArgs e) {
@@ -88,11 +88,15 @@ namespace BetterJoyForCemu {
             }
             if (mysettings.Text.Equals("非原装手柄支持")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "确定是否为第三方手柄添加支持(实验-当前默认控制器到pro)。可设置为：Disabled或DefaultCalibration或ControllerCalibration(填入不区分大小写)，Disabled => 禁用对第三方控制器的支持。使用来自控制器的操纵杆校准数据。DefaultCalibration => 支持第三方控制器。使用硬编码操纵杆校准数据。ControllerCalibration => 支持第三方控制器。使用来自控制器的操纵杆校准数据。默认：Disabled";
+                settingsinfo.Text = "确定是否为第三方手柄添加支持(实验-当前默认支持到pro手柄)。可设置为：Disabled或DefaultCalibration或ControllerCalibration(填入不区分大小写)，Disabled : 禁用对第三方控制器的支持。使用来自控制器的操纵杆校准数据。 || DefaultCalibration  : 支持第三方控制器。使用硬编码操纵杆校准数据。 || ControllerCalibration : 支持第三方控制器。使用来自控制器的操纵杆校准数据。默认：Disabled";
             }
             if (mysettings.Text.Equals("开启Home键LED灯")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "保持Switch Pro手柄HOME键LED环形灯一直亮着，默认：启用";
+                settingsinfo.Text = "保持手柄(如Switch Pro手柄)HOME键LED环形灯一直亮着，默认：启用";
+            }
+            if (mysettings.Text.Equals("Joycon使用渐进灯光")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "使用多个灯来显示当前Joycon手柄而不是一个单一的LED灯，默认：启用";
             }
             if (mysettings.Text.Equals("陀螺仪使用Joycons或鼠标")) {
                 settingsinfo.Clear();
@@ -140,7 +144,7 @@ namespace BetterJoyForCemu {
             }
             if (mysettings.Text.Equals("**关于我**")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "欢迎使用(微博&Bilibili：曦颜XY)汉化定制优化的BetterJoy！有问题记得找我反馈(＾Ｕ＾)ノ~";
+                settingsinfo.Text = "欢迎使用(微博&Bilibili：曦颜XY)汉化定制优化的BetterJoy！有问题记得找我反馈(＾Ｕ＾)ノ~  ,   记得设置后点击'应用设置'来保存您的设置哟！";
             }
         }
     }
