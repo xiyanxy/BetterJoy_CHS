@@ -181,9 +181,9 @@ namespace BetterJoyForCemu {
                 if (button.Tag.GetType() == typeof(Joycon)) {
                     Joycon v = (Joycon)button.Tag;
 					/* Switch Pro适合的振动测试数据(就是点击"验证测试"按钮时手柄振动强度)
-					v.SetRumble(20.0f, 120.0f, 1.0f); 
-                    await Task.Delay(300);
-                    v.SetRumble(20.0f, 120.0f, 0);
+					v.SetRumble(20.0f, 110.0f, 1.0f); 
+                    await Task.Delay(200);
+                    v.SetRumble(20.0f, 110.0f, 0);
 					*/
                     v.SetRumble(160.0f, 320.0f, 1.0f); 
                     await Task.Delay(300);
