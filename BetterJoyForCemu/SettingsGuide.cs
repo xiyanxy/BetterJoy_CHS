@@ -72,7 +72,7 @@ namespace BetterJoyForCemu {
             }
             if (mysettings.Text.Equals("陀螺仪模拟敏感度")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "改为-20可更改倾斜方向。如果向上，则表示上，默认：20";
+                settingsinfo.Text = "改为-400可更改倾斜方向。如果向上，则表示上，默认：400";
             }
             if (mysettings.Text.Equals("清除影响设备")) {
                 settingsinfo.Clear();
@@ -102,9 +102,13 @@ namespace BetterJoyForCemu {
                 settingsinfo.Clear();
                 settingsinfo.Text = "将陀螺仪运作方式改为 joycons操纵杆(文本框填入joy)(未实现)或鼠标操控(文本框填入mouse，按任意一个按键重置到主显示器的中间位置)或者不使用此功能(文本框填入none)，默认：none";
             }
-            if (mysettings.Text.Equals("鼠标模拟陀螺仪敏感度")) {
+            if (mysettings.Text.Equals("鼠标模拟陀螺仪敏感度X轴")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "鼠标陀螺仪操作的敏感度，默认：50";
+                settingsinfo.Text = "鼠标陀螺仪操作的敏感度X轴，默认：1200";
+            }
+            if (mysettings.Text.Equals("鼠标模拟陀螺仪敏感度Y轴")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "鼠标陀螺仪操作的敏感度Y轴，默认：800";
             }
             if (mysettings.Text.Equals("通过按住或切换使用陀螺仪")) {
                 settingsinfo.Clear();

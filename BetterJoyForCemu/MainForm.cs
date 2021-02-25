@@ -394,7 +394,7 @@ namespace BetterJoyForCemu {
             settings["交换XY键"].Value = "false";
 			settings["允许手柄校准"].Value = "false";
             settings["陀螺仪模拟"].Value = "false";
-            settings["陀螺仪模拟敏感度"].Value = "20";
+            settings["陀螺仪模拟敏感度"].Value = "400";
             settings["清除影响设备"].Value = "false";
             settings["清除白名单"].Value = "false";
             settings["使用HIDG"].Value = "false";
@@ -402,7 +402,8 @@ namespace BetterJoyForCemu {
             settings["开启Home键LED灯"].Value = "true";
             settings["Joycon使用渐进灯光"].Value = "true";
             settings["陀螺仪使用Joycons或鼠标"].Value = "none";
-            settings["鼠标模拟陀螺仪敏感度"].Value = "50";
+            settings["鼠标模拟陀螺仪敏感度X轴"].Value = "1200";
+            settings["鼠标模拟陀螺仪敏感度Y轴"].Value = "800";
             settings["通过按住或切换使用陀螺仪"].Value = "true";
             settings["鼠标左陀螺仪"].Value = "false";
             settings["鼠标拖动"].Value = "false";

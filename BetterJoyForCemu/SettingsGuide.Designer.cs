@@ -51,7 +51,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(412, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "版本编辑者: 曦颜XY  个人版本: 6.0_2020.11.23";
+            this.label2.Text = "版本编辑者: 曦颜XY  个人版本: 7.0_2021.02.25";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // mysettings
@@ -80,7 +80,8 @@
             "开启Home键LED灯",
             "Joycon使用渐进灯光",
             "陀螺仪使用Joycons或鼠标",
-            "鼠标模拟陀螺仪敏感度",
+            "鼠标模拟陀螺仪敏感度X轴",
+			"鼠标模拟陀螺仪敏感度Y轴",
             "通过按住或切换使用陀螺仪",
             "鼠标左陀螺仪",
             "鼠标拖动",
