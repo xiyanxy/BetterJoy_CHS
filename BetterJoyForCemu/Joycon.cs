@@ -21,7 +21,7 @@ namespace BetterJoyForCemu {
         public Joycon other {
             get {
                 return _other;
-            } 
+            }
             set {
                 _other = value;
 
@@ -29,13 +29,12 @@ namespace BetterJoyForCemu {
                 if (_other == null || _other == this) {
                     // Set LED to current Pad ID
                     SetLEDByPlayerNum(PadId);
-                }
-                else {
+                } else {
                     // Set LED to current Joycon Pair
                     int lowestPadId = Math.Min(_other.PadId, PadId);
                     SetLEDByPlayerNum(lowestPadId);
                 }
-            } 
+            }
         }
         public bool active_gyro = false;
 
@@ -148,7 +147,7 @@ namespace BetterJoyForCemu {
             public Queue<float[]> queue;
 
             public void set_vals(float low_freq, float high_freq, float amplitude) {
-                float[] rumbleQueue = new float[] {low_freq, high_freq, amplitude};
+                float[] rumbleQueue = new float[] { low_freq, high_freq, amplitude };
                 // Keep a queue of 15 items, discard oldest item if queue is full.
                 if (queue.Count > 15) {
                     queue.Dequeue();
@@ -288,7 +287,7 @@ namespace BetterJoyForCemu {
             handle = handle_;
             imu_enabled = imu;
             do_localize = localize;
-            rumble_obj = new Rumble(new float[] {lowFreq, highFreq, 0});
+            rumble_obj = new Rumble(new float[] { lowFreq, highFreq, 0 });
             for (int i = 0; i < buttons_down_timestamp.Length; i++)
                 buttons_down_timestamp[i] = -1;
             filterweight = alpha;
@@ -365,7 +364,7 @@ namespace BetterJoyForCemu {
         public Vector3 GetAccel() {
             return acc_g;
         }
-        public int Attach(byte leds_ = 0x0) {
+        public int Attach() {
             state = state_.ATTACHED;
 
             // Make sure command is received
@@ -423,7 +422,7 @@ namespace BetterJoyForCemu {
             //Subcommand(0x01, new byte[] { 0x03 }, 1, true);
 
             BlinkHomeLight();
-            SetPlayerLED(leds_);
+            SetLEDByPlayerNum(PadId);
 
             Subcommand(0x40, new byte[] { (imu_enabled ? (byte)0x1 : (byte)0x0) }, 1);
             Subcommand(0x48, new byte[] { 0x01 }, 1);
@@ -441,6 +440,8 @@ namespace BetterJoyForCemu {
         }
 
         public void BlinkHomeLight() { // do not call after initial setup
+            if (thirdParty)
+                return;
             byte[] a = Enumerable.Repeat((byte)0xFF, 25).ToArray();
             a[0] = 0x18;
             a[1] = 0x01;
@@ -448,6 +449,8 @@ namespace BetterJoyForCemu {
         }
 
         public void SetHomeLight(bool on) {
+            if (thirdParty)
+                return;
             byte[] a = Enumerable.Repeat((byte)0xFF, 25).ToArray();
             if (on) {
                 a[0] = 0x1F;
@@ -521,7 +524,7 @@ namespace BetterJoyForCemu {
                 HIDapi.hid_set_nonblocking(handle, 0);
 
                 // Subcommand(0x40, new byte[] { 0x0 }, 1); // disable IMU sensor
-                                                         //Subcommand(0x48, new byte[] { 0x0 }, 1); // Would turn off rumble?
+                //Subcommand(0x48, new byte[] { 0x0 }, 1); // Would turn off rumble?
 
                 if (isUSB) {
                     byte[] a = Enumerable.Repeat((byte)0, 64).ToArray();
@@ -587,8 +590,8 @@ namespace BetterJoyForCemu {
 
 
                 if (ts_en == raw_buf[1] && !isSnes) {
-                    form.AppendTextBox("重复的时间戳加入队列.\r\n");
-                    DebugPrint(string.Format("重复的时间戳加入队列. TS: {0:X2}", ts_en), DebugType.THREADING);
+                    form.AppendTextBox("重复的时间戳加入队列.请断开手柄重连.\r\n");
+                    DebugPrint(string.Format("重复的时间戳加入队列.请断开手柄重连. TS: {0:X2}", ts_en), DebugType.THREADING);
                 }
                 ts_en = raw_buf[1];
                 DebugPrint(string.Format("入列. 字节读写: {0:D}. 时间戳: {1:X2}", ret, raw_buf[1]), DebugType.THREADING);
@@ -678,6 +681,10 @@ namespace BetterJoyForCemu {
 
         bool HomeLongPowerOff = Boolean.Parse(ConfigurationManager.AppSettings["长按Home键断开连接"]);
         long PowerOffInactivityMins = Int32.Parse(ConfigurationManager.AppSettings["不使用时自动断开连接"]);
+
+        bool ChangeOrientationDoubleClick = Boolean.Parse(ConfigurationManager.AppSettings["双击改变Joycon方向"]);
+        long lastDoubleClick = -1;
+
         string extraGyroFeature = ConfigurationManager.AppSettings["陀螺仪使用Joycons或鼠标"];
         int GyroMouseSensitivityX = Int32.Parse(ConfigurationManager.AppSettings["鼠标模拟陀螺仪敏感度X轴"]);
         int GyroMouseSensitivityY = Int32.Parse(ConfigurationManager.AppSettings["鼠标模拟陀螺仪敏感度Y轴"]);
@@ -685,6 +692,7 @@ namespace BetterJoyForCemu {
         bool GyroAnalogSliders = Boolean.Parse(ConfigurationManager.AppSettings["陀螺仪模拟"]);
         int GyroAnalogSensitivity = Int32.Parse(ConfigurationManager.AppSettings["陀螺仪模拟敏感度"]);
         byte[] sliderVal = new byte[] { 0, 0 };
+
         private void DoThingsWithButtons() {
             int powerOffButton = (int)((isPro || !isLeft || other != null) ? Button.HOME : Button.CAPTURE);
 
@@ -697,6 +705,18 @@ namespace BetterJoyForCemu {
                     PowerOff();
                     return;
                 }
+            }
+
+            if (ChangeOrientationDoubleClick && buttons_down[(int)Button.STICK] && lastDoubleClick != -1 && !isPro) {
+                if ((buttons_down_timestamp[(int)Button.STICK] - lastDoubleClick) < 3000000) {
+                    form.conBtnClick(form.con[PadId], EventArgs.Empty); // trigger connection button click
+
+                    lastDoubleClick = buttons_down_timestamp[(int)Button.STICK];
+                    return;
+                }
+                lastDoubleClick = buttons_down_timestamp[(int)Button.STICK];
+            } else if (ChangeOrientationDoubleClick && buttons_down[(int)Button.STICK] && !isPro) {
+                lastDoubleClick = buttons_down_timestamp[(int)Button.STICK];
             }
 
             if (PowerOffInactivityMins > 0) {
@@ -853,15 +873,12 @@ namespace BetterJoyForCemu {
 
                 stick_precal[0] = (UInt16)(stick_raw[0] | ((stick_raw[1] & 0xf) << 8));
                 stick_precal[1] = (UInt16)((stick_raw[1] >> 4) | (stick_raw[2] << 4));
-                ushort[] cal = form.useControllerStickCalibration ? stick_cal : new ushort[6] { 2048, 2048, 2048, 2048, 2048, 2048 };
-                ushort dz = form.useControllerStickCalibration ? deadzone : (ushort)200;
-                stick = CenterSticks(stick_precal, cal, dz);
+                stick = CenterSticks(stick_precal, stick_cal, deadzone);
 
                 if (isPro) {
                     stick2_precal[0] = (UInt16)(stick2_raw[0] | ((stick2_raw[1] & 0xf) << 8));
                     stick2_precal[1] = (UInt16)((stick2_raw[1] >> 4) | (stick2_raw[2] << 4));
-                    ushort dz2 = form.useControllerStickCalibration ? deadzone2 : (ushort)200;
-                    stick2 = CenterSticks(stick2_precal, form.useControllerStickCalibration ? stick2_cal : cal, dz2);
+                    stick2 = CenterSticks(stick2_precal, stick2_cal, deadzone2);
                 }
 
                 // Read other Joycon's sticks
@@ -1051,9 +1068,9 @@ namespace BetterJoyForCemu {
                 PollThreadObj.IsBackground = true;
                 PollThreadObj.Start();
 
-                form.AppendTextBox("启动PollThread.\r\n");
+                form.AppendTextBox("启动轮询线程.\r\n");
             } else {
-                form.AppendTextBox("PollThread无法启动.\r\n");
+                form.AppendTextBox("轮询线程无法启动.\r\n");
             }
         }
 
@@ -1119,8 +1136,22 @@ namespace BetterJoyForCemu {
         }
 
         private void dump_calibration_data() {
-            if (isSnes || thirdParty)
+            if (isSnes || thirdParty) {
+                short[] temp = (short[])ConfigurationManager.AppSettings["加速度传感器灵敏度"].Split(',').Select(s => short.Parse(s)).ToArray();
+                acc_sensiti[0] = temp[0]; acc_sensiti[1] = temp[1]; acc_sensiti[2] = temp[2];
+                temp = (short[])ConfigurationManager.AppSettings["陀螺仪灵敏度"].Split(',').Select(s => short.Parse(s)).ToArray();
+                gyr_sensiti[0] = temp[0]; gyr_sensiti[1] = temp[1]; gyr_sensiti[2] = temp[2];
+                ushort[] temp2 = (ushort[])ConfigurationManager.AppSettings["摇杆1校准"].Split(',').Select(s => ushort.Parse(s.Substring(2), System.Globalization.NumberStyles.HexNumber)).ToArray();
+                stick_cal[0] = temp2[0]; stick_cal[1] = temp2[1]; stick_cal[2] = temp2[2];
+                stick_cal[3] = temp2[3]; stick_cal[4] = temp2[4]; stick_cal[5] = temp2[5];
+                deadzone = ushort.Parse(ConfigurationManager.AppSettings["摇杆1死区"]);
+                temp2 = (ushort[])ConfigurationManager.AppSettings["摇杆2校准"].Split(',').Select(s => ushort.Parse(s.Substring(2), System.Globalization.NumberStyles.HexNumber)).ToArray();
+                stick2_cal[0] = temp2[0]; stick2_cal[1] = temp2[1]; stick2_cal[2] = temp2[2];
+                stick2_cal[3] = temp2[3]; stick2_cal[4] = temp2[4]; stick2_cal[5] = temp2[5];
+                deadzone2 = ushort.Parse(ConfigurationManager.AppSettings["摇杆2死区"]);
                 return;
+            }
+
             HIDapi.hid_set_nonblocking(handle, 0);
             byte[] buf_ = ReadSPI(0x80, (isLeft ? (byte)0x12 : (byte)0x1d), 9); // get user calibration data if possible
             bool found = false;
@@ -1353,7 +1384,7 @@ namespace BetterJoyForCemu {
             return output;
         }
 
-        private static OutputControllerDualShock4InputState MapToDualShock4Input(Joycon input) {
+        public static OutputControllerDualShock4InputState MapToDualShock4Input(Joycon input) {
             var output = new OutputControllerDualShock4InputState();
 
             var swapAB = input.swapAB;
@@ -1406,10 +1437,10 @@ namespace BetterJoyForCemu {
                 output.thumb_right = buttons[(int)Button.STICK2];
             } else {
                 if (other != null) { // no need for && other != this
-                    output.circle = !swapAB ? buttons[(int)(isLeft ? Button.B : Button.DPAD_DOWN)] : buttons[(int)(isLeft ? Button.A : Button.DPAD_RIGHT)];
-                    output.cross = swapAB ? buttons[(int)(isLeft ? Button.B : Button.DPAD_DOWN)] : buttons[(int)(isLeft ? Button.A : Button.DPAD_RIGHT)];
+                    output.cross = !swapAB ? buttons[(int)(isLeft ? Button.B : Button.DPAD_DOWN)] : buttons[(int)(isLeft ? Button.A : Button.DPAD_RIGHT)];
+                    output.circle = swapAB ? buttons[(int)(isLeft ? Button.B : Button.DPAD_DOWN)] : buttons[(int)(isLeft ? Button.A : Button.DPAD_RIGHT)];
                     output.triangle = !swapXY ? buttons[(int)(isLeft ? Button.X : Button.DPAD_UP)] : buttons[(int)(isLeft ? Button.Y : Button.DPAD_LEFT)];
-                    output.triangle = swapXY ? buttons[(int)(isLeft ? Button.X : Button.DPAD_UP)] : buttons[(int)(isLeft ? Button.Y : Button.DPAD_LEFT)];
+                    output.square = swapXY ? buttons[(int)(isLeft ? Button.X : Button.DPAD_UP)] : buttons[(int)(isLeft ? Button.Y : Button.DPAD_LEFT)];
 
                     if (buttons[(int)(isLeft ? Button.DPAD_UP : Button.X)])
                         if (buttons[(int)(isLeft ? Button.DPAD_LEFT : Button.Y)])
@@ -1444,7 +1475,7 @@ namespace BetterJoyForCemu {
                     output.triangle = !swapXY ? buttons[(int)(isLeft ? Button.DPAD_RIGHT : Button.DPAD_LEFT)] : buttons[(int)(isLeft ? Button.DPAD_UP : Button.DPAD_DOWN)];
                     output.square = swapXY ? buttons[(int)(isLeft ? Button.DPAD_RIGHT : Button.DPAD_LEFT)] : buttons[(int)(isLeft ? Button.DPAD_UP : Button.DPAD_DOWN)];
 
-                    output.square = buttons[(int)Button.MINUS] | buttons[(int)Button.HOME];
+                    output.ps = buttons[(int)Button.MINUS] | buttons[(int)Button.HOME];
                     output.options = buttons[(int)Button.PLUS] | buttons[(int)Button.CAPTURE];
 
                     output.shoulder_left = buttons[(int)Button.SL];

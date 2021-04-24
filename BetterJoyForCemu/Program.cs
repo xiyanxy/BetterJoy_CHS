@@ -81,7 +81,7 @@ namespace BetterJoyForCemu {
                         }
                     }
 
-                    form.AppendTextBox("移除断联的手柄, 可以重新连接.\r\n");
+                    form.AppendTextBox("移除断连的手柄, 可以重新连接.\r\n");
                 }
             }
 
@@ -124,10 +124,6 @@ namespace BetterJoyForCemu {
                     ptr = enumerate.next; // can't believe it took me this long to figure out why USB connections used up so much CPU.
                                           // it was getting stuck in an inf loop here!
                     continue;
-                }
-
-                if (form.nonOriginal) {
-                    enumerate.product_id = product_pro;
                 }
 
                 bool validController = (enumerate.product_id == product_l || enumerate.product_id == product_r ||
@@ -308,7 +304,7 @@ namespace BetterJoyForCemu {
                         jc.out_ds4.Connect();
 
                     try {
-                        jc.Attach(leds_: jc.LED);
+                        jc.Attach();
                     } catch (Exception e) {
                         jc.state = Joycon.state_.DROPPED;
                         continue;
@@ -514,6 +510,10 @@ namespace BetterJoyForCemu {
 
         private static string appGuid = "1bf709e9-c133-41df-933a-c9ff3f664c7b"; // randomly-generated
         static void Main(string[] args) {
+
+            // Set the correct DLL for the current OS
+            SetupDlls();
+
             using (Mutex mutex = new Mutex(false, "Global\\" + appGuid)) {
                 if (!mutex.WaitOne(0, false)) {
                     MessageBox.Show("程序已经运行.", "BetterJoy");
@@ -526,5 +526,21 @@ namespace BetterJoyForCemu {
                 Application.Run(form);
             }
         }
+
+        static void SetupDlls() {
+            const int LOAD_LIBRARY_SEARCH_DEFAULT_DIRS = 0x00001000;
+            SetDefaultDllDirectories(LOAD_LIBRARY_SEARCH_DEFAULT_DIRS);
+            AddDllDirectory(Path.Combine(
+                AppDomain.CurrentDomain.BaseDirectory,
+                Environment.Is64BitProcess ? "x64" : "x86"
+            ));
+        }
+
+        // Helper funtions to set the hidapi dll location acording to the system instruction set.
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool SetDefaultDllDirectories(int directoryFlags);
+        [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+        static extern void AddDllDirectory(string lpPathName);
     }
 }

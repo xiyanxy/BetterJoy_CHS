@@ -64,7 +64,31 @@ namespace BetterJoyForCemu {
             }
             if (mysettings.Text.Equals("允许手柄校准")) {
                 settingsinfo.Clear();
-                settingsinfo.Text = "允许校准控制器的陀螺仪，可设置为：true或false。文本框填入'true'时点击'校准'按钮一次，得到陀螺校准数据，并且一次只能校准一个手柄。默认值：true";
+                settingsinfo.Text = "允许校准控制器的陀螺仪，勾选并应用设置后会出现'校准'按钮，点击'校准'按钮一次，水平放置手柄开始校准，不勾选一次只能校准一个手柄。默认值：不启用";
+            }
+            if (mysettings.Text.Equals("加速度传感器灵敏度")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "仅用于 第三方(非老任官方) 手柄.默认值：16384,16384,16384 ";
+            }
+            if (mysettings.Text.Equals("陀螺仪灵敏度")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "仅用于 第三方(非老任官方) 手柄.默认值：18642,18642,18642 ";
+            }
+            if (mysettings.Text.Equals("摇杆1校准")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "仅用于 第三方(非老任官方) 手柄.默认值：0x780,0x780,0x780,0x830,0x780,0x780 ";
+            }
+            if (mysettings.Text.Equals("摇杆1死区")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "仅用于 第三方(非老任官方) 手柄.默认值：200 ";
+            }
+            if (mysettings.Text.Equals("摇杆2校准")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "仅用于 第三方(非老任官方) 手柄.默认值：0x780,0x780,0x780,0x830,0x780,0x780 ";
+            }
+            if (mysettings.Text.Equals("摇杆2死区")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "仅用于 第三方(非老任官方) 手柄.默认值：200 ";
             }
             if (mysettings.Text.Equals("陀螺仪模拟")) {
                 settingsinfo.Clear();
@@ -85,10 +109,6 @@ namespace BetterJoyForCemu {
             if (mysettings.Text.Equals("使用HIDG")) {
                 settingsinfo.Clear();
                 settingsinfo.Text = "例如，如果同时使用Citra和Steam，可以关闭此项和 '以XInput显示' 项。如果你想让BetterJoy与Steam(或其他程序)无冲突，请查看HIDGuardian和Steam的wiki页面，默认：不启用";
-            }
-            if (mysettings.Text.Equals("非原装手柄支持")) {
-                settingsinfo.Clear();
-                settingsinfo.Text = "确定是否为第三方手柄添加支持(实验-当前默认支持到pro手柄)。可设置为：Disabled或DefaultCalibration或ControllerCalibration(填入不区分大小写)，Disabled : 禁用对第三方控制器的支持。使用来自控制器的操纵杆校准数据。 || DefaultCalibration  : 支持第三方控制器。使用硬编码操纵杆校准数据。 || ControllerCalibration : 支持第三方控制器。使用来自控制器的操纵杆校准数据。默认：Disabled";
             }
             if (mysettings.Text.Equals("开启Home键LED灯")) {
                 settingsinfo.Clear();
@@ -141,6 +161,10 @@ namespace BetterJoyForCemu {
             if (mysettings.Text.Equals("长按Home键断开连接")) {
                 settingsinfo.Clear();
                 settingsinfo.Text = "长时间按“截图”或“Home主页”按钮时，断开手柄连接（按2秒+），默认：启用";
+            }
+            if (mysettings.Text.Equals("双击改变Joycon方向")) {
+                settingsinfo.Clear();
+                settingsinfo.Text = "双击Joycon摇杆(L3, R3)改变Joycon的方向，默认：启用";
             }
             if (mysettings.Text.Equals("调试类型")) {
                 settingsinfo.Clear();

@@ -51,7 +51,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(412, 25);
             this.label2.TabIndex = 1;
-            this.label2.Text = "版本编辑者: 曦颜XY  个人版本: 7.0_2021.02.25";
+            this.label2.Text = "版本编辑者: 曦颜XY  个人版本: 8.0_2021.04.24";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // mysettings
@@ -71,17 +71,23 @@
             "晃动输入时间间隔",
             "交换AB键",
             "交换XY键",
+            "允许手柄校准",
+            "加速度传感器灵敏度",
+            "陀螺仪灵敏度",
+            "摇杆1校准",
+            "摇杆1死区",
+            "摇杆2校准",
+            "摇杆2死区",
             "陀螺仪模拟",
             "陀螺仪模拟敏感度",
             "清除影响设备",
             "清除白名单",
             "使用HIDG",
-            "非原装手柄支持",
             "开启Home键LED灯",
             "Joycon使用渐进灯光",
             "陀螺仪使用Joycons或鼠标",
             "鼠标模拟陀螺仪敏感度X轴",
-			"鼠标模拟陀螺仪敏感度Y轴",
+            "鼠标模拟陀螺仪敏感度Y轴",
             "通过按住或切换使用陀螺仪",
             "鼠标左陀螺仪",
             "鼠标拖动",
@@ -90,6 +96,7 @@
             "自动断开连接",
             "不使用时自动断开连接",
             "长按Home键断开连接",
+            "双击改变Joycon方向",
             "调试类型"});
             this.mysettings.Location = new System.Drawing.Point(126, 83);
             this.mysettings.Name = "mysettings";

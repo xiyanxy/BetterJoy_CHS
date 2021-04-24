@@ -105,7 +105,7 @@
             this.version_lbl.Name = "version_lbl";
             this.version_lbl.Size = new System.Drawing.Size(88, 20);
             this.version_lbl.TabIndex = 2;
-            this.version_lbl.Text = "版本: V6.4β";
+            this.version_lbl.Text = "版本: V6.4";
             // 
             // passiveScanBox
             // 

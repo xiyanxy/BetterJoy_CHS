@@ -15,8 +15,6 @@ using System.Xml.Linq;
 
 namespace BetterJoyForCemu {
     public partial class MainForm : Form {
-        public bool useControllerStickCalibration;
-        public bool nonOriginal;
         public bool allowCalibration = Boolean.Parse(ConfigurationManager.AppSettings["允许手柄校准"]);
         public List<Button> con, loc;
         public bool calibrate;
@@ -40,7 +38,6 @@ namespace BetterJoyForCemu {
             caliData = new List<KeyValuePair<string, float[]>> {
                 new KeyValuePair<string, float[]>("0", new float[6] {0,0,0,-710,0,0})
             };
-            SetNonOriginalControllerSettings();
 
             InitializeComponent();
 
@@ -67,28 +64,6 @@ namespace BetterJoyForCemu {
 
                 childControl.MouseClick += cbBox_Changed;
                 settingsTable.Controls.Add(childControl, 1, i);
-            }
-        }
-
-        private void SetNonOriginalControllerSettings() {
-            Enum.TryParse(ConfigurationManager.AppSettings["非原装手柄支持"], true, out NonOriginalController nonOriginalController);
-            switch ((int)nonOriginalController) {
-                case 0:
-                    nonOriginal = false;
-                    break;
-                case 1:
-                case 2:
-                    nonOriginal = true;
-                    break;       
-            }
-            switch ((int)nonOriginalController) {
-                case 0:
-                case 2:
-                    useControllerStickCalibration = true;
-                    break;
-                case 1:
-                    useControllerStickCalibration = false;
-                    break;
             }
         }
 
@@ -393,12 +368,17 @@ namespace BetterJoyForCemu {
             settings["交换AB键"].Value = "false";
             settings["交换XY键"].Value = "false";
 			settings["允许手柄校准"].Value = "false";
+			settings["加速度传感器灵敏度"].Value = "16384,16384,16384";
+			settings["陀螺仪灵敏度"].Value = "18642,18642,18642";
+			settings["摇杆1校准"].Value = "0x780,0x780,0x780,0x830,0x780,0x780";
+			settings["摇杆1死区"].Value = "200";
+			settings["摇杆2校准"].Value = "0x780,0x780,0x780,0x830,0x780,0x780";
+			settings["摇杆2死区"].Value = "200";
             settings["陀螺仪模拟"].Value = "false";
             settings["陀螺仪模拟敏感度"].Value = "400";
             settings["清除影响设备"].Value = "false";
             settings["清除白名单"].Value = "false";
             settings["使用HIDG"].Value = "false";
-            settings["非原装手柄支持"].Value = "Disabled";
             settings["开启Home键LED灯"].Value = "true";
             settings["Joycon使用渐进灯光"].Value = "true";
             settings["陀螺仪使用Joycons或鼠标"].Value = "none";
@@ -412,7 +392,8 @@ namespace BetterJoyForCemu {
             settings["自动断开连接"].Value = "false";
             settings["不使用时自动断开连接"].Value = "-1";
             settings["长按Home键断开连接"].Value = "true";
-			settings["调试类型"].Value = "0";
+            settings["双击改变Joycon方向"].Value = "true";
+            settings["调试类型"].Value = "0";
             try {
                 configFile.Save(ConfigurationSaveMode.Modified);
             } catch (ConfigurationErrorsException) {
@@ -430,7 +411,7 @@ namespace BetterJoyForCemu {
                 countDown.Stop();
                 this.StartGetData();
             } else {
-                this.console.Text = "请保持手柄平放." + "\r\n";
+                this.console.Text = "注意！请保持手柄水平放置！" + "\r\n";
                 this.console.Text += "将在" + this.count + "秒后开始校准.";
                 this.count--;
             }
